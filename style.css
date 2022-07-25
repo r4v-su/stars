@@ -75,3 +75,11 @@ main {
     flex-direction: column;
 
 }
+
+span.no_selection {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -ms-user-select: none;
+}

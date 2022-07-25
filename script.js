@@ -52,7 +52,7 @@ class Ability {
         for(let i = 0; i < qty; ++i){
             let star = document.createElement('span');
             star.textContent += "star_outline";
-            star.classList.add('material-icons');
+            star.classList.add('material-icons', 'no_selection');
             star.setAttribute('id', i);
             starsArr.push(star)
         }  return starsArr
@@ -71,23 +71,29 @@ class Ability {
                 let clicked = e.target
                     if(clicked.nodeName === 'SPAN' && clicked.innerText == 'star_outline') {
                         this.logStar(clicked);
-
+                    }
+            })
+            star.addEventListener('dblclick', e => {
+                let clicked = e.target
+                    if(clicked.nodeName === 'SPAN' && clicked.innerText == 'star') {
+                        this.unLogStar(clicked);
                     }
             })
         })
-
     }
 
     logStar = function(clicked) {
         clicked.innerText = 'star';
-
         this.stars.full.push(clicked);
-
         console.log(this.stars)
     }
-    
-}
 
+    unLogStar = function(clicked) {
+        clicked.innerText = 'star_outline';
+        this.stars.empty.push(clicked);
+        console.log(this.stars)
+    }
+}
 
 let appContainerDiv = document.getElementById('app-container')
 let health = new Ability ('health', appContainerDiv,5)
